@@ -17,3 +17,11 @@
 
 @media (min-width: 1824px) {
 }
+
+
+#head{
+  background-color: aqua;
+  border: 20px;
+  border-radius: 15px;
+  border-color: red;
+}
