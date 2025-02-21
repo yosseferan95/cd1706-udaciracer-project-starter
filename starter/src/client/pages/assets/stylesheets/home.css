@@ -20,8 +20,11 @@
 
 
 #head{
+  display: flex;
+  align-items: center;
   background-color: aqua;
-  border: 20px;
+  border: 10px;
   border-radius: 15px;
   border-color: red;
+  
 }
