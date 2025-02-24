@@ -98,23 +98,27 @@ async function handleCreateRace() {
 	// const race = TODO - call the asynchronous method createRace, passing the correct parameters
      const race =  await createRace(player_id,track_id)
 	// TODO - update the store with the race id in the response
+  
+  console.log(race.id)
 	// TIP - console logging API responses can be really helpful to know what data shape you received
 	console.log("RACE: ", race)
-	// store.race_id = 
+	 store.race_id = race.id
 	   
 	// The race has been created, now start the countdown
 	// TODO - call the async function runCountdown
-
+    runCountdown()
 	// TODO - call the async function startRace
+    startRace()
 	// TIP - remember to always check if a function takes parameters before calling it!
 
 	// TODO - call the async function runRace
+  runRace()
 }
 
 function runRace(raceID) {
 	return new Promise(resolve => {
 	// TODO - use Javascript's built in setInterval method to get race info (getRace function) every 500ms
-
+    
 	/* 
 		TODO - if the race info status property is "in-progress", update the leaderboard by calling:
 
