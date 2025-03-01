@@ -118,13 +118,19 @@ async function handleCreateRace() {
 function runRace(raceID) {
 	return new Promise(resolve => {
 	// TODO - use Javascript's built in setInterval method to get race info (getRace function) every 500ms
-    
+  raceInterval =  setInterval(getRace,500)
 	/* 
 		TODO - if the race info status property is "in-progress", update the leaderboard by calling:
-
+    
 		renderAt('#leaderBoard', raceProgress(res.positions))
 	*/
-
+    if (race_status === inProgress){
+      renderAt('#leaderBoard', raceProgress(res.positions))
+    }else if(race_status === finished){
+      clearInterval(raceInterval) 
+      renderAt('#race', resultsView(res.positions))
+      resolve(res)
+    }
 	/* 
 		TODO - if the race info status property is "finished", run the following:
 
@@ -133,26 +139,30 @@ function runRace(raceID) {
 		resolve(res) // resolve the promise
 	*/
 	})
-	// remember to add error handling for the Promise
+  .catch(err => console.log("bro we have error at the fucken first setInterval", err))
 }
+	// remember to add error handling for the Promise
+
 
 async function runCountdown() {
 	try {
 		// wait for the DOM to load
 		await delay(1000)
 		let timer = 3
-
+  
 		return new Promise(resolve => {
 			// TODO - use Javascript's built in setInterval method to count down once per second
-
+     countDown = setInterval(document.getElementById('big-numbers').innerHTML = --timer,1000)
 			// run this DOM manipulation inside the set interval to decrement the countdown for the user
-			document.getElementById('big-numbers').innerHTML = --timer
-
+			timer -= 1000
+      if (timer === 0) {
+        clearInterval(countDown)
+      }
 			// TODO - when the setInterval timer hits 0, clear the interval, resolve the promise, and return
-
+     
 		})
 	} catch(error) {
-		console.log(error);
+		console.log(`bro solve the countDown interval${error}`);
 	}
 }
 
@@ -185,6 +195,7 @@ function handleSelectTrack(target) {
 function handleAccelerate() {
 	console.log("accelerate button clicked")
 	// TODO - Invoke the API call to accelerate
+  accelerate()
 }
 
 // HTML VIEWS ------------------------------------------------
