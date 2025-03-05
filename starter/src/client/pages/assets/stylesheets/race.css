@@ -61,9 +61,36 @@ h1 {
   margin: auto;
 }
 
+/* تعديل حجم البوكسات */
+.choice-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* مسافة بين العناصر */
+  max-width: 800px;
+  margin: auto;
+}
+
+.choice-box {
+  flex: 1 1 calc(33.33% - 20px); /* توزيع البوكسات بالتساوي */
+  padding: 25px 40px; /* تكبير الأزرار */
+  font-size: 1.6rem; /* تكبير النص */
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 3px solid var(--primary-color);
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 180px; /* ضمان أن كل بوكس متساوي */
+}
+
+.choice-box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
 .button {
   display: inline-block;
-  padding: 1.2rem 3rem;
+  padding: 1.5rem 4rem; /* تكبير البوكس بتاع الزر */
   background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
   color: #fff;
   text-decoration: none;
