@@ -1,21 +1,10 @@
-/* PROGRESS PAGE SPECIFIC STYLES */
-
-/* Global styles */
-:root {
-  --primary-color: #00ffff;
-  --secondary-color: #ff00ff;
-  --background-color: linear-gradient(135deg, #0a0a1a, #1a1a2e);
-}
-
 body {
-  min-height: 100vh;
-  background: var(--background-color);
+  background: #0a0a0a;
   color: #fff;
   font-family: 'Orbitron', sans-serif;
-  line-height: 1.6;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
 }
 
 header {
@@ -43,67 +32,104 @@ header::before {
 }
 
 h1 {
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-  position: relative;
-  z-index: 1;
+}
+
+#two-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
 }
 
 #leaderBoard {
-  text-align: center;
   background: rgba(0, 0, 0, 0.7);
-  padding: 2rem;
+  border: 3px solid #00ffff;
   border-radius: 15px;
-  border: 2px solid;
-  border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) 1;
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
 }
 
-table th, table td {
-  padding: 1rem;
-  border: 1px solid rgba(0, 255, 255, 0.5);
-  text-align: center;
+th, td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.3);
   font-size: 1.2rem;
 }
 
+tr:hover {
+  background: rgba(0, 50, 50, 0.3);
+}
+
 #gas-peddle {
-  display: inline-block;
-  padding: 1.2rem 3rem;
-  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-  color: #fff;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  padding: 2rem 4rem;
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, #00ffff, #0066ff);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  border: 2px solid transparent;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  text-transform: uppercase;
 }
 
 #gas-peddle:hover {
-  transform: translateY(-3px) scale(1.05);
+  transform: scale(1.05);
   box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
 }
 
+#gas-peddle::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+  );
+  transform: rotate(45deg);
+  animation: buttonGlow 3s infinite;
+}
+
+@keyframes buttonGlow {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
 footer {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 1.5rem;
+  margin-top: auto;
+  padding: 2rem;
   text-align: center;
+  color: #666;
   border-top: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  #two-columns {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+  }
+  
+  #gas-peddle {
+      width: 100%;
+      padding: 1.5rem;
+  }
 }

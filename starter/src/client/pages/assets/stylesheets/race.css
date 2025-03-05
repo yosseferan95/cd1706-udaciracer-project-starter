@@ -1,118 +1,104 @@
-/* assets/stylesheets/race.css */
+/* Add this to your race.css */
 
-body {
-  min-height: 100vh;
-  background: var(--background-color);
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-}
-
-header {
+/* Header Styling */
+#create-race h2 {
+  font-family: 'Audiowide', cursive;
+  font-size: 2.5rem;
   text-align: center;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.8);
-  position: relative;
-  overflow: hidden;
-}
-
-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-  animation: headerGlow 3s infinite linear;
-}
-
-@keyframes headerGlow {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-h1 {
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  margin: 2rem 0;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  animation: headerGlow 2s infinite alternate;
+}
+
+#create-race h3 {
+  font-size: 2rem;
+  color: #ff00ff !important;
+  text-align: center;
+  margin: 1.5rem 0;
+  text-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
   position: relative;
-  z-index: 1;
-}
-
-#create-race {
-  text-align: center;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 2rem;
-  border-radius: 15px;
-  border: 2px solid;
-  border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) 1;
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  max-width: 800px;
-  margin: auto;
-}
-
-/* تعديل حجم البوكسات */
-.choice-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px; /* مسافة بين العناصر */
-  max-width: 800px;
-  margin: auto;
-}
-
-.choice-box {
-  flex: 1 1 calc(33.33% - 20px); /* توزيع البوكسات بالتساوي */
-  padding: 25px 40px; /* تكبير الأزرار */
-  font-size: 1.6rem; /* تكبير النص */
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  border: 3px solid var(--primary-color);
-  border-radius: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-width: 180px; /* ضمان أن كل بوكس متساوي */
-}
-
-.choice-box:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px var(--primary-color);
-}
-
-.button {
   display: inline-block;
-  padding: 1.5rem 4rem; /* تكبير البوكس بتاع الزر */
-  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+  padding: 0.5rem 2rem;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes headerGlow {
+  0% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+  100% { text-shadow: 0 0 40px rgba(255, 0, 255, 0.5); }
+}
+
+/* Enhanced Box Buttons */
+.cards-list li {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 3px solid #00ffff;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1rem;
   color: #fff;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: bold;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
-  border: 2px solid transparent;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
-.button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+.cards-list li::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: buttonGlow 3s infinite;
 }
 
+@keyframes buttonGlow {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
+.cards-list li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+  border-color: #ff00ff;
+}
+
+/* Windows Activation Notice */
 footer {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 1.5rem;
+  margin-top: 3rem;
   text-align: center;
-  border-top: 1px solid rgba(0, 255, 255, 0.3);
+  color: #888;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cards-list {
+    grid-template-columns: 1fr;
+  }
+  
+  #create-race h2 {
+    font-size: 2rem;
+  }
+  
+  #create-race h3 {
+    font-size: 1.5rem;
+  }
 }

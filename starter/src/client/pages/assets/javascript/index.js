@@ -378,48 +378,54 @@ function getTracks() {
 function getRacers() {
 	// GET request to `${SERVER}/api/cars`
 	// TODO: Fetch racers
-  return fetch(`${SERVER}/api/cars`)
+  return  fetch(`${SERVER}/api/cars`)
     .then(res => res.json())
     .catch(err => console.log(`boss we cant get the racers coz we got this ${err}`))
 	// TIP: Do a file search for "TODO" to make sure you find all the things you need to do! There are even some vscode plugins that will highlight todos for you
 }
 
-function createRace(player_id, track_id) {
+async function createRace(player_id, track_id) {
 	player_id = parseInt(player_id)
 	track_id = parseInt(track_id)
 	const body = { player_id, track_id }
 	
-	return fetch(`${SERVER}/api/races`, {
-		method: 'POST',
-		...defaultFetchOpts(),
-		dataType: 'jsonp',
-		body: JSON.stringify(body)
-	})
-	.then(res => res.json())
-	.catch(err => console.error("Error creating race:", err))
+	try {
+    const res = await fetch(`${SERVER}/api/races`, {
+      method: 'POST',
+      ...defaultFetchOpts(),
+      dataType: 'jsonp',
+      body: JSON.stringify(body)
+    })
+    return await res.json()
+  } catch (err) {
+    return console.error("Error creating race:", err)
+  }
 }
 
-function getRace(id) {
+async function getRace(id) {
 	// GET request to `${SERVER}/api/races/${id}`
- return fetch(`${SERVER}/api/races/${id}`)
+ return  await fetch(`${SERVER}/api/races/${id}`)
   .then(res => res.json())
   .catch( err => console.error("boss we cant find the race coz we got this", err))
 }
 
-function startRace(id) {
-	return fetch(`${SERVER}/api/races/${id}/start`, {
-		method: 'POST',
-		...defaultFetchOpts(),
-	})
-	.then(res => res.json())
-	.catch(err => console.log("Problem with getRace request::", err))
+async function startRace(id) {
+	try {
+    const res = await fetch(`${SERVER}/api/races/${id}/start`, {
+      method: 'POST',
+      ...defaultFetchOpts(),
+    })
+    return await res.json()
+  } catch (err) {
+    return console.log("Problem with getRace request::", err)
+  }
 }
 
-function accelerate(id) {
+async function accelerate(id) {
 	// POST request to `${SERVER}/api/races/${id}/accelerate`
 	// options parameter provided as defaultFetchOpts
 	// no body or datatype needed for this request
- return fetch(`${SERVER}/api/races/${id}/accelerate`,{
+ return  await fetch(`${SERVER}/api/races/${id}/accelerate`,{
       method : post,
       ...defaultFetchOpts()
  })
